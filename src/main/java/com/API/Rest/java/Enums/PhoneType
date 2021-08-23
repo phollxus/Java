@@ -1,0 +1,16 @@
+package com.API.Rest.java.Enums;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+
+public class PhoneType<phoneType> {
+    public static PhoneType phoneType;
+
+    public String MOBILE;
+    public String COMMERCIAL;
+    public String HOME;
+
+    private final String description;
