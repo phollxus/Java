@@ -1,0 +1,32 @@
+package com.API.Rest.java;
+
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import javax.persistence.Query;
+import java.util.List;
+
+public interface JPARepository<T, ID, S> extends PagingAndSortingRepository<T, ID>, Query {
+    List<T> findAll();
+
+    List<T> findAll(Sort var1);
+
+    List<T> findAllById(Iterable<ID> var1);
+
+    <S extends T> List<S> saveAll(Iterable<S> var1);
+
+    void flush();
+
+    <S extends T> S saveAndFlush(S var1);
+
+    void deleteAndBatch(Iterable<T> var1);
+
+    void deleteAllInBatch();
+
+    T getOne(ID var1);
+
+    <S extends T> List<S> findAll(Example<S> var1);
+
+    <S extends T> List<S> findAll(Example<S> var1, Sort var2);
+}
