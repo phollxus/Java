@@ -1,0 +1,39 @@
+package com.API.Rest.java;
+
+import com.API.Rest.java.DTO.MessageResponseDTO;
+import com.API.Rest.java.Entity.PersonDTO;
+import com.API.Rest.java.Service.PersonService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+
+public class PersonServiceTest {
+
+    @Mock
+    private PersonRepository personRepository;
+
+    @InjectMocks
+    private PersonService personService;
+
+    @Test
+    void testGivenPersonDTOThenReturnSaveMessage(MessageResponseDTO successMessage, Object AssertEquals) {
+        PersonDTO personDTO = createFakeDTO();
+        PersonDTO expectedSavedPerson = createFakeEntity();
+
+        Mockito.when(personRepository.save(expectedSavedPerson)).thenReturn(expectedSavedPerson);
+
+        MessageResponseDTO expectedSuccessMessage = MessageResponseDTO
+                .builder()
+                .build();
+
+        MessageResponseDTO successMessage = personService.createPerson(personDTO);
+
+        AssertEquals(expectedSuccessMessage, successMessage);
+    }
+
+}
