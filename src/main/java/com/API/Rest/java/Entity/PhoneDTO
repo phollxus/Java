@@ -1,0 +1,29 @@
+package com.API.Rest.java.Entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+
+public class PhoneDTO<PhoneType> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PhoneType type;
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 13, max = 14)
+    private String number;
+}
