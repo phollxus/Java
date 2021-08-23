@@ -1,0 +1,37 @@
+package com.API.Rest.java.Repository;
+
+import com.API.Rest.java.JPARepositoryImplementation;
+import org.springframework.data.jpa.provider.PersistenceProvider;
+import org.springframework.data.jpa.repository.query.EscapeCharacter;
+import org.springframework.data.jpa.repository.support.CrudMethodMetadata;
+
+import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+public class SimpleJPARepository<T, ID, JPAEntityFormation> implements JPARepositoryImplementation {
+    private static final String ID_MUST_NOT_BE_NULL ="The given id must not be null";
+    private final JPAEntityFormation entityFormation;
+    private final EntityManager entityManager;
+    private final PersistenceProvider persistenceProvider;
+    private CrudMethodMetadata metadata;
+    private EscapeCharacter escapeCharacter;
+
+    public SimpleJPARepository(JPAEntityFormation entityFormation, EntityManager em, EntityManager entityManager, PersistenceProvider persistenceProvider) {
+        this.entityFormation = entityFormation;
+        this.entityManager = entityManager;
+        this.persistenceProvider = persistenceProvider;
+    }
+
+    private static <T> Collection<T> toCollection(Iterable<T> ts) {
+        if (ts instanceof Collection) {
+            return (Collection) ts;
+        } else {
+            List<T> tCollection = new ArrayList();
+            Iterator var2 = ts.iterator();
+
+            while (var2.hasNext());
+        }
+        return null;
